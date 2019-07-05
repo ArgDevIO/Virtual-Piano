@@ -43,8 +43,9 @@
 			this.btn_startGame.Size = new System.Drawing.Size(200, 120);
 			this.btn_startGame.TabIndex = 0;
 			this.btn_startGame.TabStop = false;
-			this.btn_startGame.Text = "START GAME";
+			this.btn_startGame.Text = "PLAY GAME";
 			this.btn_startGame.UseVisualStyleBackColor = false;
+			this.btn_startGame.Click += new System.EventHandler(this.btn_startGame_Click);
 			// 
 			// btn_freePlay
 			// 
