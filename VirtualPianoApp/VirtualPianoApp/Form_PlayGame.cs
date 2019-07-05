@@ -27,6 +27,9 @@ namespace VirtualPianoApp
 		string openNoteCommand;
 		string playNoteCommand;
 
+        int hits = 0;
+        int misses = 0;
+
 		public short _minutes, _seconds;
 		public long _miliseconds;
 
@@ -134,6 +137,11 @@ namespace VirtualPianoApp
 
 		private void checkForCollision(string key)
 		{
+            bool isCollision = noteDoc.checkForCollision(key);
+            if (isCollision)
+                hits++;
+            else
+                misses++;
 
 		}
 

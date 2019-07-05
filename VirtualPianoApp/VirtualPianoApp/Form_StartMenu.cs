@@ -24,5 +24,13 @@ namespace VirtualPianoApp
 			playGameForm.Closed += (s, args) => this.Close();
 			playGameForm.Show();
 		}
-	}
+
+        private void btn_freePlay_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var freePlayForm = new form_FreePlay();
+            freePlayForm.Closed += (s, args) => this.Close();
+            freePlayForm.Show();
+        }
+    }
 }
