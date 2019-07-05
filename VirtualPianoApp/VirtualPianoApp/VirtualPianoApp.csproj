@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_FreePlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FreePlay.Designer.cs">
+      <DependentUpon>Form_FreePlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_PlayGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="NoteObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_FreePlay.resx">
+      <DependentUpon>Form_FreePlay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_PlayGame.resx">
       <DependentUpon>Form_PlayGame.cs</DependentUpon>
     </EmbeddedResource>
