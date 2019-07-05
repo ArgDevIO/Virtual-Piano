@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VirtualPianoApp
 {
-	public partial class form_startMenu : Form
+	public partial class form_PlayGame : Form
 	{
-		public form_startMenu()
+		public form_PlayGame()
 		{
 			InitializeComponent();
 		}
