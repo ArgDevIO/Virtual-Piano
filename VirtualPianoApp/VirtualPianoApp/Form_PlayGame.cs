@@ -31,9 +31,6 @@ namespace VirtualPianoApp
 			Console.WriteLine("open " + Application.StartupPath + "\\NOTES\\{0}.wav type waveaudio alias {0}");
 		}
 
-		
-
-
 		private string getOpenNoteCommand(string note)
 		{
 			return string.Format("open C:\\VIRTUAL-PIANO\\NOTES\\{0}.wav type waveaudio alias {0}", note);
@@ -60,7 +57,7 @@ namespace VirtualPianoApp
 				case 'Y': return "A";
 				case '7': return "ASharp";
 				case 'U': return "B";
-				case 'I': return "CC";
+				case 'I': return "C1";
 				default: return null;
 			}
 		}
@@ -71,7 +68,7 @@ namespace VirtualPianoApp
 			if (key != null)
 			{
 				keyDowns.Remove(key);
-				//resetButtonColor(key);
+				resetButtonColor(key);
 			}
 		}
 
@@ -81,10 +78,10 @@ namespace VirtualPianoApp
 			Console.WriteLine(key + "key");
 			if (key != null)
 			{
-				//if (keyDowns.Contains(key))
-				//	return;
+				if (keyDowns.Contains(key))
+					return;
 
-				//keyDowns.Add(key);
+				keyDowns.Add(key);
 
 				if (playingNote)
 				{
@@ -100,8 +97,110 @@ namespace VirtualPianoApp
 					playingNote = true;
 					noteCounter++;
 				}
-				//changeButtonPressedColor(key);
+				changeButtonPressedColor(key);
 			}
+		}
+
+		private void changeButtonPressedColor(string note)
+		{
+			switch (note)
+			{
+				case "C":
+					btn_C.BackColor = Color.Gray;
+					break;
+				case "CSharp":
+					btn_CSharp.BackColor = Color.Gray;
+					break;
+				case "D":
+					btn_D.BackColor = Color.Gray;
+					break;
+				case "DSharp":
+					btn_DSharp.BackColor = Color.Gray;
+					break;
+				case "E":
+					btn_E.BackColor = Color.Gray;
+					break;
+				case "F":
+					btn_F.BackColor = Color.Gray;
+					break;
+				case "FSharp":
+					btn_FSharp.BackColor = Color.Gray;
+					break;
+				case "G":
+					btn_G.BackColor = Color.Gray;
+					break;
+				case "GSharp":
+					btn_GSharp.BackColor = Color.Gray;
+					break;
+				case "A":
+					btn_A.BackColor = Color.Gray;
+					break;
+				case "ASharp":
+					btn_ASharp.BackColor = Color.Gray;
+					break;
+				case "B":
+					btn_B.BackColor = Color.Gray;
+					break;
+				case "C1":
+					btn_C1.BackColor = Color.Gray;
+					break;
+			}
+		}
+
+		private void resetButtonColor(string note)
+		{
+			if (!note.Contains("Sharp"))
+			{
+				switch (note)
+				{
+					case "C":
+						btn_C.BackColor = Color.White;
+						break;
+					case "D":
+						btn_D.BackColor = Color.White;
+						break;
+					case "E":
+						btn_E.BackColor = Color.White;
+						break;
+					case "F":
+						btn_F.BackColor = Color.White;
+						break;
+					case "G":
+						btn_G.BackColor = Color.White;
+						break;
+					case "A":
+						btn_A.BackColor = Color.White;
+						break;
+					case "B":
+						btn_B.BackColor = Color.White;
+						break;
+					case "C1":
+						btn_C1.BackColor = Color.White;
+						break;
+				}
+			}
+			else
+			{
+				switch (note)
+				{
+					case "CSharp":
+						btn_CSharp.BackColor = Color.Black;
+						break;
+					case "DSharp":
+						btn_DSharp.BackColor = Color.Black;
+						break;
+					case "FSharp":
+						btn_FSharp.BackColor = Color.Black;
+						break;
+					case "GSharp":
+						btn_GSharp.BackColor = Color.Black;
+						break;
+					case "ASharp":
+						btn_ASharp.BackColor = Color.Black;
+						break;
+				}
+			}
+
 		}
 	}
 }
