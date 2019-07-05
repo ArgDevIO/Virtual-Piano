@@ -37,5 +37,20 @@ namespace VirtualPianoApp
 		{
 			return notes.First();
 		}
-	}
+
+        public bool checkForCollision(string keyPressed)
+        {
+            foreach (NoteObj n in notes)
+            {
+                if (n.position.Y >= 535 && n.position.Y <= 542)
+                {
+                    if (n.noteName.Equals(keyPressed))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
 }
