@@ -42,8 +42,6 @@ namespace VirtualPianoApp
 		private MidiObj midiObj = null;
 		#endregion
 
-		
-
 		public form_PlayGame()
 		{
 			InitializeComponent();
@@ -70,13 +68,14 @@ namespace VirtualPianoApp
 		private void form_PlayGame_KeyDown(object sender, KeyEventArgs e)
 		{
 			string key = getNote((char)e.KeyValue);
-			Console.WriteLine(key + "key");
 			if (key != null)
 			{
 				if (keyDowns.Contains(key))
 					return;
 
 				keyDowns.Add(key);
+
+				checkForCollision(key);
 
 				if (playingNote)
 				{
@@ -95,7 +94,48 @@ namespace VirtualPianoApp
 				changeButtonPressedColor(key);
 			}
 		}
+
+		private void btn_openMidi_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Filter = "MIDI|*.mid";
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				midiObj = new MidiObj(ofd.FileName);
+				btn_openMidi.Hide();
+				btn_start.Show();
+
+				IEnumerable<Note> notes = midiObj.notes;
+				TempoMap tempoMap = midiObj.tempoMap;
+
+				foreach (Note n in notes)
+				{
+					MetricTimeSpan metricTime = n.TimeAs<MetricTimeSpan>(tempoMap);
+
+					NoteObj tmpNote =
+						new NoteObj(
+						new Point(
+							getNotePosition(n).X, 0), new MyTime(
+								metricTime.Minutes, metricTime.Seconds, metricTime.Milliseconds),
+							n.NoteName.ToString(),
+							getNoteWidth(n));
+					listOfNotes.Add(tmpNote);
+				}
+			}
+
+		}
+
+		private void btn_start_Click(object sender, EventArgs e)
+		{
+			timerPiano.Start();
+			btn_start.Hide();
+		}
 		#endregion
+
+		private void checkForCollision(string key)
+		{
+
+		}
 
 		#region Helper methods
 		private string getOpenNoteCommand(string note)
@@ -128,225 +168,6 @@ namespace VirtualPianoApp
 				default: return null;
 			}
 		}
-
-		private void changeButtonPressedColor(string note)
-		{
-			switch (note)
-			{
-				case "C":
-					btn_C.BackColor = Color.Gray;
-					break;
-				case "CSharp":
-					btn_CSharp.BackColor = Color.Gray;
-					break;
-				case "D":
-					btn_D.BackColor = Color.Gray;
-					break;
-				case "DSharp":
-					btn_DSharp.BackColor = Color.Gray;
-					break;
-				case "E":
-					btn_E.BackColor = Color.Gray;
-					break;
-				case "F":
-					btn_F.BackColor = Color.Gray;
-					break;
-				case "FSharp":
-					btn_FSharp.BackColor = Color.Gray;
-					break;
-				case "G":
-					btn_G.BackColor = Color.Gray;
-					break;
-				case "GSharp":
-					btn_GSharp.BackColor = Color.Gray;
-					break;
-				case "A":
-					btn_A.BackColor = Color.Gray;
-					break;
-				case "ASharp":
-					btn_ASharp.BackColor = Color.Gray;
-					break;
-				case "B":
-					btn_B.BackColor = Color.Gray;
-					break;
-				case "C1":
-					btn_C1.BackColor = Color.Gray;
-					break;
-			}
-		}
-
-		private void btn_openMidi_Click(object sender, EventArgs e)
-		{
-			OpenFileDialog ofd = new OpenFileDialog();
-			ofd.Filter = "MIDI|*.mid";
-			if (ofd.ShowDialog() == DialogResult.OK)
-			{
-				midiObj = new MidiObj(ofd.FileName);
-				btn_openMidi.Hide();
-				btn_start.Show();
-
-				IEnumerable<Note> notes = midiObj.notes;
-				TempoMap tempoMap = midiObj.tempoMap;
-
-				foreach (Note n in notes)
-				{
-					MetricTimeSpan metricTime = n.TimeAs<MetricTimeSpan>(tempoMap);
-
-					NoteObj tmpNote =
-						new NoteObj(
-						new Point(
-							getNotePosition(n).X, 0), new MyTime(
-								metricTime.Minutes, metricTime.Seconds, metricTime.Milliseconds), 
-							n.NoteName.ToString(),
-							getNoteWidth(n));
-					listOfNotes.Add(tmpNote);
-				}
-			}
-
-		}
-
-		private void btn_start_Click(object sender, EventArgs e)
-		{
-			timerPiano.Start();
-			btn_start.Hide();
-		}
-
-		private int getNoteWidth(Note n)
-		{
-			string note = n.NoteName.ToString();
-
-			if (!note.Contains("Sharp"))
-			{
-				return 77;
-			}
-			else
-			{
-				return 40;
-			}
-		}
-
-		private Point getNotePosition(Note n)
-		{
-			switch (Convert.ToString(n.NoteName))
-			{
-				case "C":
-					return btn_C.Location;
-				case "CSharp":
-					return btn_CSharp.Location;
-				case "D":
-					return btn_D.Location;
-				case "DSharp":
-					return btn_DSharp.Location;
-				case "E":
-					return btn_E.Location;
-				case "F":
-					return btn_F.Location;
-				case "FSharp":
-					return btn_FSharp.Location;
-				case "G":
-					return btn_G.Location;
-				case "GSharp":
-					return btn_GSharp.Location;
-				case "A":
-					return btn_A.Location;
-				case "ASharp":
-					return btn_ASharp.Location;
-				case "B":
-					return btn_B.Location;
-
-				default: return new Point(0, 0);
-			}
-		}
-
-		private void timerPiano_Tick(object sender, EventArgs e)
-		{
-			noteDoc.Move();
-			IncreaseMiliseconds();
-			ShowTime();
-			DrawNote();
-
-			Invalidate(true);
-		}
-
-		private void ShowTime()
-		{
-			lbl_time.Text = _minutes.ToString("00") + ":" + _seconds.ToString("00") + ":" + _miliseconds.ToString("0000");
-		}
-
-		private void DrawNote()
-		{
-			if (listOfNotes.Count != 0)
-			{
-				NoteObj n = listOfNotes.First();
-				if (compareTime(n))
-				{
-					noteDoc.AddNote(n);
-					listOfNotes.RemoveAt(0);
-				}
-			}
-			
-		}
-
-		private bool compareTime(NoteObj n)
-		{
-			if (n.time._minutes == _minutes)
-			{
-				if (n.time._seconds == _seconds)
-				{
-					if (Math.Abs(n.time._miliseconds - _miliseconds) <= 27)
-					{
-						return true;
-					}
-					else return false;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-		private void IncreaseMiliseconds()
-		{
-			if (_miliseconds == 999)
-			{
-				_miliseconds = 0;
-				IncreaseSeconds();
-			}
-			else
-			{
-				_miliseconds += 27;
-			}
-		}
-
-		private void IncreaseSeconds()
-		{
-			if (_seconds == 59)
-			{
-				_seconds = 0;
-				IncreaseMinutes();
-			}
-			else
-			{
-				_seconds++;
-			}
-		}
-
-		private void IncreaseMinutes()
-		{
-			_minutes++;
-		}
-
-		private void notesWindow_Paint(object sender, PaintEventArgs e)
-		{
-			noteDoc.Draw(e.Graphics);
-		}
-
-
 
 		private void resetButtonColor(string note)
 		{
@@ -402,6 +223,184 @@ namespace VirtualPianoApp
 				}
 			}
 		}
+
+		private void changeButtonPressedColor(string note)
+		{
+			switch (note)
+			{
+				case "C":
+					btn_C.BackColor = Color.Gray;
+					break;
+				case "CSharp":
+					btn_CSharp.BackColor = Color.Gray;
+					break;
+				case "D":
+					btn_D.BackColor = Color.Gray;
+					break;
+				case "DSharp":
+					btn_DSharp.BackColor = Color.Gray;
+					break;
+				case "E":
+					btn_E.BackColor = Color.Gray;
+					break;
+				case "F":
+					btn_F.BackColor = Color.Gray;
+					break;
+				case "FSharp":
+					btn_FSharp.BackColor = Color.Gray;
+					break;
+				case "G":
+					btn_G.BackColor = Color.Gray;
+					break;
+				case "GSharp":
+					btn_GSharp.BackColor = Color.Gray;
+					break;
+				case "A":
+					btn_A.BackColor = Color.Gray;
+					break;
+				case "ASharp":
+					btn_ASharp.BackColor = Color.Gray;
+					break;
+				case "B":
+					btn_B.BackColor = Color.Gray;
+					break;
+				case "C1":
+					btn_C1.BackColor = Color.Gray;
+					break;
+			}
+		}
+
+		private int getNoteWidth(Note n)
+		{
+			string note = n.NoteName.ToString();
+
+			if (!note.Contains("Sharp"))
+			{
+				return 77;
+			}
+			else
+			{
+				return 40;
+			}
+		}
+
+		private Point getNotePosition(Note n)
+		{
+			switch (Convert.ToString(n.NoteName))
+			{
+				case "C":
+					return btn_C.Location;
+				case "CSharp":
+					return btn_CSharp.Location;
+				case "D":
+					return btn_D.Location;
+				case "DSharp":
+					return btn_DSharp.Location;
+				case "E":
+					return btn_E.Location;
+				case "F":
+					return btn_F.Location;
+				case "FSharp":
+					return btn_FSharp.Location;
+				case "G":
+					return btn_G.Location;
+				case "GSharp":
+					return btn_GSharp.Location;
+				case "A":
+					return btn_A.Location;
+				case "ASharp":
+					return btn_ASharp.Location;
+				case "B":
+					return btn_B.Location;
+
+				default: return new Point(0, 0);
+			}
+		}
+		private void ShowTime()
+		{
+			lbl_time.Text = _minutes.ToString("00") + ":" + _seconds.ToString("00") + ":" + _miliseconds.ToString("0000");
+		}
+
+		private bool compareTime(NoteObj n)
+		{
+			if (n.time._minutes == _minutes)
+			{
+				if (n.time._seconds == _seconds)
+				{
+					if (Math.Abs(n.time._miliseconds - _miliseconds) <= 27)
+					{
+						return true;
+					}
+					else return false;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		private void IncreaseMiliseconds()
+		{
+			if (_miliseconds == 999)
+			{
+				_miliseconds = 0;
+				IncreaseSeconds();
+			}
+			else
+			{
+				_miliseconds += 27;
+			}
+		}
+
+		private void IncreaseSeconds()
+		{
+			if (_seconds == 59)
+			{
+				_seconds = 0;
+				IncreaseMinutes();
+			}
+			else
+			{
+				_seconds++;
+			}
+		}
+
+		private void IncreaseMinutes()
+		{
+			_minutes++;
+		}
 		#endregion
+		private void timerPiano_Tick(object sender, EventArgs e)
+		{
+			noteDoc.Move();
+			IncreaseMiliseconds();
+			ShowTime();
+			DrawNote();
+
+			Invalidate(true);
+		}
+
+		private void DrawNote()
+		{
+			if (listOfNotes.Count != 0)
+			{
+				NoteObj n = listOfNotes.First();
+				if (compareTime(n))
+				{
+					noteDoc.AddNote(n);
+					listOfNotes.RemoveAt(0);
+				}
+			}
+		}
+
+		private void notesWindow_Paint(object sender, PaintEventArgs e)
+		{
+			noteDoc.Draw(e.Graphics);
+		}
 	}
 }

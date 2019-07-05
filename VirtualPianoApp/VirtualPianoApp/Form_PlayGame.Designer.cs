@@ -55,6 +55,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.timerPiano = new System.Windows.Forms.Timer(this.components);
 			this.lbl_time = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.notesWindow.SuspendLayout();
 			this.SuspendLayout();
@@ -422,11 +424,31 @@
 			this.lbl_time.Text = "00:00:0000";
 			this.lbl_time.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(53, 132);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(77, 29);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "lbl_hit";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(53, 177);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(128, 29);
+			this.label4.TabIndex = 4;
+			this.label4.Text = "lbl_misses";
+			// 
 			// form_PlayGame
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.ClientSize = new System.Drawing.Size(1272, 871);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.lbl_time);
 			this.Controls.Add(this.notesWindow);
 			this.Controls.Add(this.panel1);
@@ -442,6 +464,7 @@
 			this.notesWindow.ResumeLayout(false);
 			this.notesWindow.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -473,5 +496,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lbl_time;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label4;
 	}
 }
