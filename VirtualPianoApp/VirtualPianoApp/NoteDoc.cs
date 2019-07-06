@@ -42,7 +42,7 @@ namespace VirtualPianoApp
         {
             foreach (NoteObj n in notes)
             {
-                if (n.position.Y >= 535 && n.position.Y <= 542)
+                if (n.position.Y >= 376 && n.position.Y <= 420)
                 {
                     if (n.noteName.Equals(keyPressed))
                     {
@@ -52,5 +52,13 @@ namespace VirtualPianoApp
             }
             return false;
         }
+
+		public bool checkForLastAndStop()
+		{
+			if (notes[notes.Count - 1].position.Y >= 440)
+				return true;
+			else
+				return false;
+		}
     }
 }
