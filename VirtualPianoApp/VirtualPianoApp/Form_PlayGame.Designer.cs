@@ -57,6 +57,7 @@
 			this.lbl_time = new System.Windows.Forms.Label();
 			this.lbl_misses = new System.Windows.Forms.Label();
 			this.lbl_hits = new System.Windows.Forms.Label();
+			this.lbl_midiName = new System.Windows.Forms.Label();
 			this.panel_pianoButtons.SuspendLayout();
 			this.notesWindow.SuspendLayout();
 			this.SuspendLayout();
@@ -348,6 +349,7 @@
 			// notesWindow
 			// 
 			this.notesWindow.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.notesWindow.Controls.Add(this.lbl_midiName);
 			this.notesWindow.Controls.Add(this.btn_start);
 			this.notesWindow.Controls.Add(this.btn_openMidi);
 			this.notesWindow.Controls.Add(this.label3);
@@ -451,6 +453,18 @@
 			this.lbl_hits.Text = "Hits:  0";
 			this.lbl_hits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// lbl_midiName
+			// 
+			this.lbl_midiName.BackColor = System.Drawing.Color.Silver;
+			this.lbl_midiName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.lbl_midiName.Location = new System.Drawing.Point(298, 128);
+			this.lbl_midiName.Name = "lbl_midiName";
+			this.lbl_midiName.Size = new System.Drawing.Size(258, 41);
+			this.lbl_midiName.TabIndex = 5;
+			this.lbl_midiName.Text = "Test.mid";
+			this.lbl_midiName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lbl_midiName.Visible = false;
+			// 
 			// form_PlayGame
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -506,5 +520,6 @@
 		private System.Windows.Forms.Label lbl_time;
 		private System.Windows.Forms.Label lbl_misses;
 		private System.Windows.Forms.Label lbl_hits;
+		private System.Windows.Forms.Label lbl_midiName;
 	}
 }

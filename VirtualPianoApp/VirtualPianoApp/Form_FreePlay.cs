@@ -34,11 +34,14 @@ namespace VirtualPianoApp
 
         bool playingNote = false;
         int noteCounter = 1;
+
+		private string notesFolderLocation;
         #endregion
 
-        public form_FreePlay()
+        public form_FreePlay(string notesFolder)
         {
             InitializeComponent();
+			this.notesFolderLocation = notesFolder;
         }
 
         private void Form_FreePlay_KeyDown(object sender, KeyEventArgs e)
@@ -72,7 +75,8 @@ namespace VirtualPianoApp
 
         private string getOpenNoteCommand(string note)
         {
-            return string.Format("open C:\\VIRTUAL-PIANO\\NOTES\\{0}.wav type waveaudio alias {0}", note);
+			Console.WriteLine(string.Format("open {0}\\{1}.wav type waveaudio alias {1}", notesFolderLocation, note));
+            return string.Format("open {0}\\{1}.wav type waveaudio alias {1}", notesFolderLocation, note);
         }
 
         private string getPlayNoteCommand(string note)
