@@ -170,7 +170,15 @@ namespace VirtualPianoApp
             }
         }
 
-        private void changeButtonPressedColor(string note)
+		private void btn_backToStartMenu_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			var startMenu = new form_startMenu();
+			startMenu.Closed += (s, args) => this.Close();
+			startMenu.Show();
+		}
+
+		private void changeButtonPressedColor(string note)
         {
             switch (note)
             {

@@ -175,7 +175,7 @@ namespace VirtualPianoApp
 		#region Helper methods
 		private string getOpenNoteCommand(string note)
 		{
-			return string.Format("open {0}{1}.wav type waveaudio alias {1}", notesFolderLocation, note);
+			return string.Format("open {0}\\{1}.wav type waveaudio alias {1}", notesFolderLocation, note);
 		}
 
 		private string getPlayNoteCommand(string note)
@@ -423,6 +423,7 @@ namespace VirtualPianoApp
 		private void resetGame()
 		{
 			btn_openMidi.Show();
+			lbl_midiName.Show();
 			notesWindow.BackColor = Color.DarkSlateGray;
 			if (midiObj.file != null)
 				btn_start.Show();
@@ -449,6 +450,14 @@ namespace VirtualPianoApp
 		private void notesWindow_Paint(object sender, PaintEventArgs e)
 		{
 			noteDoc.Draw(e.Graphics);
+		}
+
+		private void btn_backToStartMenu_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			var startMenu = new form_startMenu();
+			startMenu.Closed += (s, args) => this.Close();
+			startMenu.Show();
 		}
 
 		private void DrawNote()
