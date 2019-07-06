@@ -43,19 +43,23 @@ namespace VirtualPianoApp
 		int noteCounter = 1;
 
 		private MidiObj midiObj = null;
+
+		private string notesFolderLocation;
 		#endregion
 
-		public form_PlayGame()
+		public form_PlayGame(string notesFolder)
 		{
 			
 			InitializeComponent();
+			this.notesFolderLocation = notesFolder;
 			timerPiano.Stop();
 			disablePianoButtons();
-			
 
+			#region invoking Double Buffer for smoother painting
 			typeof(Panel).InvokeMember("DoubleBuffered",
 			BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 			null, notesWindow, new object[] { true });
+			#endregion
 
 			Console.WriteLine("open " + Application.StartupPath + "\\NOTES\\{0}.wav type waveaudio alias {0}");
 		}
@@ -109,14 +113,16 @@ namespace VirtualPianoApp
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
 				midiObj = new MidiObj(ofd.FileName);
+				lbl_midiName.Text = ofd.SafeFileName;
+				lbl_midiName.Show();
+				btn_openMidi.TextAlign = ContentAlignment.TopCenter;
+				btn_openMidi.Padding = new Padding(0, 10, 0, 0);
 				btn_start.Show();
 			}
-
 		}
 
 		private void btn_start_Click(object sender, EventArgs e)
 		{
-
 			IEnumerable<Note> notes = midiObj.notes;
 			TempoMap tempoMap = midiObj.tempoMap;
 
@@ -139,7 +145,10 @@ namespace VirtualPianoApp
 			_miliseconds = 0;
 			hits = 0;
 			misses = 0;
+			lbl_hits.Text = "Hits:  0";
+			lbl_misses.Text = "Misses:  0";
 			btn_openMidi.Hide();
+			lbl_midiName.Hide();
 			btn_start.Hide();
 			enablePianoButtons();
 			timerPiano.Start();
@@ -161,13 +170,12 @@ namespace VirtualPianoApp
 				lbl_misses.Text = "Misses:  " + misses.ToString();
 				notesWindow.BackColor = Color.DarkRed;
 			}
-          
 		}
 
 		#region Helper methods
 		private string getOpenNoteCommand(string note)
 		{
-			return string.Format("open C:\\VIRTUAL-PIANO\\NOTES\\{0}.wav type waveaudio alias {0}", note);
+			return string.Format("open {0}{1}.wav type waveaudio alias {1}", notesFolderLocation, note);
 		}
 
 		private string getPlayNoteCommand(string note)
@@ -412,28 +420,6 @@ namespace VirtualPianoApp
 			Invalidate(true);
 		}
 
-		private void DrawNote()
-		{
-			if (listOfNotes.Count != 0)
-			{
-				NoteObj n = listOfNotes.First();
-				if (compareTime(n))
-				{
-					noteDoc.AddNote(n);
-					listOfNotes.RemoveAt(0);
-				}
-			} else
-			{
-				if (noteDoc.checkForLastAndStop())
-				{
-					disablePianoButtons();
-					resetGame();
-					timerPiano.Stop();
-				}
-					
-			}
-		}
-
 		private void resetGame()
 		{
 			btn_openMidi.Show();
@@ -463,6 +449,29 @@ namespace VirtualPianoApp
 		private void notesWindow_Paint(object sender, PaintEventArgs e)
 		{
 			noteDoc.Draw(e.Graphics);
+		}
+
+		private void DrawNote()
+		{
+			if (listOfNotes.Count != 0)
+			{
+				NoteObj n = listOfNotes.First();
+				if (compareTime(n))
+				{
+					noteDoc.AddNote(n);
+					listOfNotes.RemoveAt(0);
+				}
+			}
+			else
+			{
+				if (noteDoc.checkForLastAndStop())
+				{
+					disablePianoButtons();
+					resetGame();
+					timerPiano.Stop();
+				}
+
+			}
 		}
 	}
 }
