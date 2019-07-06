@@ -411,7 +411,7 @@
 			// timerPiano
 			// 
 			this.timerPiano.Enabled = true;
-			this.timerPiano.Interval = 16;
+			this.timerPiano.Interval = 20;
 			this.timerPiano.Tick += new System.EventHandler(this.timerPiano_Tick);
 			// 
 			// lbl_time

@@ -51,6 +51,8 @@ namespace VirtualPianoApp
 			InitializeComponent();
 			timerPiano.Stop();
 			disablePianoButtons();
+			
+
 			typeof(Panel).InvokeMember("DoubleBuffered",
 			BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 			null, notesWindow, new object[] { true });
@@ -108,36 +110,39 @@ namespace VirtualPianoApp
 			{
 				midiObj = new MidiObj(ofd.FileName);
 				btn_start.Show();
-
-				IEnumerable<Note> notes = midiObj.notes;
-				TempoMap tempoMap = midiObj.tempoMap;
-
-				foreach (Note n in notes)
-				{
-					MetricTimeSpan metricTime = n.TimeAs<MetricTimeSpan>(tempoMap);
-
-					NoteObj tmpNote =
-						new NoteObj(
-						new Point(
-							getNotePosition(n).X, 0), new MyTime(
-								metricTime.Minutes, metricTime.Seconds, metricTime.Milliseconds),
-							n.NoteName.ToString(),
-							getNoteWidth(n));
-					listOfNotes.Add(tmpNote);
-				}
 			}
 
 		}
 
 		private void btn_start_Click(object sender, EventArgs e)
 		{
-			timerPiano.Start();
-			btn_openMidi.Hide();
-			btn_start.Hide();
+
+			IEnumerable<Note> notes = midiObj.notes;
+			TempoMap tempoMap = midiObj.tempoMap;
+
+			foreach (Note n in notes)
+			{
+				MetricTimeSpan metricTime = n.TimeAs<MetricTimeSpan>(tempoMap);
+
+				NoteObj tmpNote =
+					new NoteObj(
+					new Point(
+						getNotePosition(n).X, 0), new MyTime(
+							metricTime.Minutes, metricTime.Seconds, metricTime.Milliseconds),
+						n.NoteName.ToString(),
+						getNoteWidth(n));
+				listOfNotes.Add(tmpNote);
+			}
+
 			_minutes = 0;
 			_seconds = 0;
 			_miliseconds = 0;
+			hits = 0;
+			misses = 0;
+			btn_openMidi.Hide();
+			btn_start.Hide();
 			enablePianoButtons();
+			timerPiano.Start();
 		}
 		#endregion
 
