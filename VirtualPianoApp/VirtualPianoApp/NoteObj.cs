@@ -31,9 +31,9 @@ namespace VirtualPianoApp
 			format.LineAlignment = StringAlignment.Center;
 			format.Alignment = StringAlignment.Center;
 			if (width > 40)
-				g.DrawString(position.Y.ToString(), new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold), Brushes.White, rect, format);
+				g.DrawString(noteName, new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold), Brushes.White, rect, format);
 			else
-				g.DrawString(position.Y.ToString(), new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Bold), Brushes.White, rect, format);
+				g.DrawString(noteName, new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Bold), Brushes.White, rect, format);
 		}
 
 		public void Move(Point newPosition)
