@@ -32,17 +32,12 @@
 			this.panel_pianoButtons = new System.Windows.Forms.Panel();
 			this.btn_ASharp = new System.Windows.Forms.Button();
 			this.btn_DSharp = new System.Windows.Forms.Button();
-			this.btn_D1Sharp = new System.Windows.Forms.Button();
 			this.btn_GSharp = new System.Windows.Forms.Button();
 			this.btn_CSharp = new System.Windows.Forms.Button();
 			this.btn_FSharp = new System.Windows.Forms.Button();
-			this.btn_C1Sharp = new System.Windows.Forms.Button();
-			this.btn_F1 = new System.Windows.Forms.Button();
 			this.btn_D = new System.Windows.Forms.Button();
 			this.btn_C = new System.Windows.Forms.Button();
-			this.btn_E1 = new System.Windows.Forms.Button();
 			this.btn_E = new System.Windows.Forms.Button();
-			this.btn_D1 = new System.Windows.Forms.Button();
 			this.btn_F = new System.Windows.Forms.Button();
 			this.btn_C1 = new System.Windows.Forms.Button();
 			this.btn_G = new System.Windows.Forms.Button();
@@ -58,6 +53,7 @@
 			this.lbl_misses = new System.Windows.Forms.Label();
 			this.lbl_hits = new System.Windows.Forms.Label();
 			this.lbl_midiName = new System.Windows.Forms.Label();
+			this.btn_backToStartMenu = new System.Windows.Forms.Button();
 			this.panel_pianoButtons.SuspendLayout();
 			this.notesWindow.SuspendLayout();
 			this.SuspendLayout();
@@ -66,25 +62,20 @@
 			// 
 			this.panel_pianoButtons.Controls.Add(this.btn_ASharp);
 			this.panel_pianoButtons.Controls.Add(this.btn_DSharp);
-			this.panel_pianoButtons.Controls.Add(this.btn_D1Sharp);
 			this.panel_pianoButtons.Controls.Add(this.btn_GSharp);
 			this.panel_pianoButtons.Controls.Add(this.btn_CSharp);
 			this.panel_pianoButtons.Controls.Add(this.btn_FSharp);
-			this.panel_pianoButtons.Controls.Add(this.btn_C1Sharp);
-			this.panel_pianoButtons.Controls.Add(this.btn_F1);
 			this.panel_pianoButtons.Controls.Add(this.btn_D);
 			this.panel_pianoButtons.Controls.Add(this.btn_C);
-			this.panel_pianoButtons.Controls.Add(this.btn_E1);
 			this.panel_pianoButtons.Controls.Add(this.btn_E);
-			this.panel_pianoButtons.Controls.Add(this.btn_D1);
 			this.panel_pianoButtons.Controls.Add(this.btn_F);
 			this.panel_pianoButtons.Controls.Add(this.btn_C1);
 			this.panel_pianoButtons.Controls.Add(this.btn_G);
 			this.panel_pianoButtons.Controls.Add(this.btn_B);
 			this.panel_pianoButtons.Controls.Add(this.btn_A);
-			this.panel_pianoButtons.Location = new System.Drawing.Point(200, 455);
+			this.panel_pianoButtons.Location = new System.Drawing.Point(110, 417);
 			this.panel_pianoButtons.Name = "panel_pianoButtons";
-			this.panel_pianoButtons.Size = new System.Drawing.Size(882, 307);
+			this.panel_pianoButtons.Size = new System.Drawing.Size(630, 307);
 			this.panel_pianoButtons.TabIndex = 0;
 			// 
 			// btn_ASharp
@@ -116,21 +107,6 @@
 			this.btn_DSharp.Text = "3";
 			this.btn_DSharp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btn_DSharp.UseVisualStyleBackColor = false;
-			// 
-			// btn_D1Sharp
-			// 
-			this.btn_D1Sharp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.btn_D1Sharp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_D1Sharp.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.btn_D1Sharp.Location = new System.Drawing.Point(690, 0);
-			this.btn_D1Sharp.Name = "btn_D1Sharp";
-			this.btn_D1Sharp.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-			this.btn_D1Sharp.Size = new System.Drawing.Size(40, 170);
-			this.btn_D1Sharp.TabIndex = 17;
-			this.btn_D1Sharp.TabStop = false;
-			this.btn_D1Sharp.Text = "0";
-			this.btn_D1Sharp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btn_D1Sharp.UseVisualStyleBackColor = false;
 			// 
 			// btn_GSharp
 			// 
@@ -177,35 +153,6 @@
 			this.btn_FSharp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btn_FSharp.UseVisualStyleBackColor = false;
 			// 
-			// btn_C1Sharp
-			// 
-			this.btn_C1Sharp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.btn_C1Sharp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_C1Sharp.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.btn_C1Sharp.Location = new System.Drawing.Point(611, 0);
-			this.btn_C1Sharp.Name = "btn_C1Sharp";
-			this.btn_C1Sharp.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-			this.btn_C1Sharp.Size = new System.Drawing.Size(40, 170);
-			this.btn_C1Sharp.TabIndex = 16;
-			this.btn_C1Sharp.TabStop = false;
-			this.btn_C1Sharp.Text = "9";
-			this.btn_C1Sharp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btn_C1Sharp.UseVisualStyleBackColor = false;
-			// 
-			// btn_F1
-			// 
-			this.btn_F1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.btn_F1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_F1.Location = new System.Drawing.Point(790, 0);
-			this.btn_F1.Name = "btn_F1";
-			this.btn_F1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-			this.btn_F1.Size = new System.Drawing.Size(77, 301);
-			this.btn_F1.TabIndex = 10;
-			this.btn_F1.TabStop = false;
-			this.btn_F1.Text = "[";
-			this.btn_F1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btn_F1.UseVisualStyleBackColor = false;
-			// 
 			// btn_D
 			// 
 			this.btn_D.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -234,20 +181,6 @@
 			this.btn_C.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btn_C.UseVisualStyleBackColor = false;
 			// 
-			// btn_E1
-			// 
-			this.btn_E1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.btn_E1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_E1.Location = new System.Drawing.Point(711, 0);
-			this.btn_E1.Name = "btn_E1";
-			this.btn_E1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-			this.btn_E1.Size = new System.Drawing.Size(77, 301);
-			this.btn_E1.TabIndex = 9;
-			this.btn_E1.TabStop = false;
-			this.btn_E1.Text = "P";
-			this.btn_E1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btn_E1.UseVisualStyleBackColor = false;
-			// 
 			// btn_E
 			// 
 			this.btn_E.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -261,20 +194,6 @@
 			this.btn_E.Text = "E";
 			this.btn_E.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btn_E.UseVisualStyleBackColor = false;
-			// 
-			// btn_D1
-			// 
-			this.btn_D1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.btn_D1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_D1.Location = new System.Drawing.Point(632, 0);
-			this.btn_D1.Name = "btn_D1";
-			this.btn_D1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-			this.btn_D1.Size = new System.Drawing.Size(77, 301);
-			this.btn_D1.TabIndex = 8;
-			this.btn_D1.TabStop = false;
-			this.btn_D1.Text = "O";
-			this.btn_D1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btn_D1.UseVisualStyleBackColor = false;
 			// 
 			// btn_F
 			// 
@@ -354,9 +273,9 @@
 			this.notesWindow.Controls.Add(this.btn_openMidi);
 			this.notesWindow.Controls.Add(this.label3);
 			this.notesWindow.Controls.Add(this.label1);
-			this.notesWindow.Location = new System.Drawing.Point(200, 49);
+			this.notesWindow.Location = new System.Drawing.Point(110, 15);
 			this.notesWindow.Name = "notesWindow";
-			this.notesWindow.Size = new System.Drawing.Size(867, 407);
+			this.notesWindow.Size = new System.Drawing.Size(630, 407);
 			this.notesWindow.TabIndex = 1;
 			this.notesWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.notesWindow_Paint);
 			// 
@@ -366,7 +285,7 @@
 			this.btn_start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.btn_start.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_start.Location = new System.Drawing.Point(295, 219);
+			this.btn_start.Location = new System.Drawing.Point(186, 225);
 			this.btn_start.Name = "btn_start";
 			this.btn_start.Size = new System.Drawing.Size(264, 87);
 			this.btn_start.TabIndex = 1;
@@ -380,7 +299,7 @@
 			this.btn_openMidi.BackColor = System.Drawing.Color.Silver;
 			this.btn_openMidi.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btn_openMidi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btn_openMidi.Location = new System.Drawing.Point(295, 85);
+			this.btn_openMidi.Location = new System.Drawing.Point(186, 91);
 			this.btn_openMidi.Name = "btn_openMidi";
 			this.btn_openMidi.Size = new System.Drawing.Size(264, 87);
 			this.btn_openMidi.TabIndex = 0;
@@ -419,9 +338,9 @@
 			// lbl_time
 			// 
 			this.lbl_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.lbl_time.Location = new System.Drawing.Point(200, 9);
+			this.lbl_time.Location = new System.Drawing.Point(110, -25);
 			this.lbl_time.Name = "lbl_time";
-			this.lbl_time.Size = new System.Drawing.Size(867, 53);
+			this.lbl_time.Size = new System.Drawing.Size(630, 53);
 			this.lbl_time.TabIndex = 2;
 			this.lbl_time.Text = "00:00:0000";
 			this.lbl_time.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -431,11 +350,11 @@
 			this.lbl_misses.BackColor = System.Drawing.Color.DarkRed;
 			this.lbl_misses.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.lbl_misses.ForeColor = System.Drawing.Color.White;
-			this.lbl_misses.Location = new System.Drawing.Point(200, 32);
+			this.lbl_misses.Location = new System.Drawing.Point(110, -2);
 			this.lbl_misses.MaximumSize = new System.Drawing.Size(200, 30);
-			this.lbl_misses.MinimumSize = new System.Drawing.Size(200, 30);
+			this.lbl_misses.MinimumSize = new System.Drawing.Size(160, 30);
 			this.lbl_misses.Name = "lbl_misses";
-			this.lbl_misses.Size = new System.Drawing.Size(200, 30);
+			this.lbl_misses.Size = new System.Drawing.Size(160, 30);
 			this.lbl_misses.TabIndex = 3;
 			this.lbl_misses.Text = "Misses:  0";
 			this.lbl_misses.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -444,7 +363,7 @@
 			// 
 			this.lbl_hits.BackColor = System.Drawing.Color.LightGreen;
 			this.lbl_hits.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.lbl_hits.Location = new System.Drawing.Point(927, 32);
+			this.lbl_hits.Location = new System.Drawing.Point(600, -2);
 			this.lbl_hits.MaximumSize = new System.Drawing.Size(140, 30);
 			this.lbl_hits.MinimumSize = new System.Drawing.Size(140, 30);
 			this.lbl_hits.Name = "lbl_hits";
@@ -457,7 +376,7 @@
 			// 
 			this.lbl_midiName.BackColor = System.Drawing.Color.Silver;
 			this.lbl_midiName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.lbl_midiName.Location = new System.Drawing.Point(298, 128);
+			this.lbl_midiName.Location = new System.Drawing.Point(189, 134);
 			this.lbl_midiName.Name = "lbl_midiName";
 			this.lbl_midiName.Size = new System.Drawing.Size(258, 41);
 			this.lbl_midiName.TabIndex = 5;
@@ -465,11 +384,25 @@
 			this.lbl_midiName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lbl_midiName.Visible = false;
 			// 
+			// btn_backToStartMenu
+			// 
+			this.btn_backToStartMenu.BackColor = System.Drawing.Color.DimGray;
+			this.btn_backToStartMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btn_backToStartMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_backToStartMenu.Location = new System.Drawing.Point(-4, -6);
+			this.btn_backToStartMenu.Name = "btn_backToStartMenu";
+			this.btn_backToStartMenu.Size = new System.Drawing.Size(104, 36);
+			this.btn_backToStartMenu.TabIndex = 5;
+			this.btn_backToStartMenu.Text = "<< BACK";
+			this.btn_backToStartMenu.UseVisualStyleBackColor = false;
+			this.btn_backToStartMenu.Click += new System.EventHandler(this.btn_backToStartMenu_Click);
+			// 
 			// form_PlayGame
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-			this.ClientSize = new System.Drawing.Size(1272, 778);
+			this.ClientSize = new System.Drawing.Size(842, 721);
+			this.Controls.Add(this.btn_backToStartMenu);
 			this.Controls.Add(this.lbl_hits);
 			this.Controls.Add(this.lbl_misses);
 			this.Controls.Add(this.lbl_time);
@@ -477,7 +410,7 @@
 			this.Controls.Add(this.panel_pianoButtons);
 			this.KeyPreview = true;
 			this.MaximumSize = new System.Drawing.Size(1300, 950);
-			this.MinimumSize = new System.Drawing.Size(1190, 825);
+			this.MinimumSize = new System.Drawing.Size(870, 800);
 			this.Name = "form_PlayGame";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "VIRTUAL PIANO: play game";
@@ -494,9 +427,6 @@
 
 		private System.Windows.Forms.Panel panel_pianoButtons;
 		private System.Windows.Forms.Button btn_C;
-		private System.Windows.Forms.Button btn_F1;
-		private System.Windows.Forms.Button btn_E1;
-		private System.Windows.Forms.Button btn_D1;
 		private System.Windows.Forms.Button btn_C1;
 		private System.Windows.Forms.Button btn_B;
 		private System.Windows.Forms.Button btn_A;
@@ -505,8 +435,6 @@
 		private System.Windows.Forms.Button btn_E;
 		private System.Windows.Forms.Button btn_D;
 		private System.Windows.Forms.Button btn_CSharp;
-		private System.Windows.Forms.Button btn_D1Sharp;
-		private System.Windows.Forms.Button btn_C1Sharp;
 		private System.Windows.Forms.Button btn_ASharp;
 		private System.Windows.Forms.Button btn_GSharp;
 		private System.Windows.Forms.Button btn_FSharp;
@@ -521,5 +449,6 @@
 		private System.Windows.Forms.Label lbl_misses;
 		private System.Windows.Forms.Label lbl_hits;
 		private System.Windows.Forms.Label lbl_midiName;
+		private System.Windows.Forms.Button btn_backToStartMenu;
 	}
 }
