@@ -37,7 +37,7 @@ namespace VirtualPianoApp
 		private List<string> keyDowns = new List<string>();
 		private List<NoteObj> listOfNotes = new List<NoteObj>();
 
-		public bool buffer = false;
+		public bool pianoEnabled = false;
 
 		bool playingNote = false;
 		int noteCounter = 1;
@@ -47,9 +47,10 @@ namespace VirtualPianoApp
 
 		public form_PlayGame()
 		{
+			
 			InitializeComponent();
 			timerPiano.Stop();
-
+			disablePianoButtons();
 			typeof(Panel).InvokeMember("DoubleBuffered",
 			BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 			null, notesWindow, new object[] { true });
@@ -61,17 +62,18 @@ namespace VirtualPianoApp
 		private void form_PlayGame_KeyUp(object sender, KeyEventArgs e)
 		{
 			string key = getNote((char)e.KeyValue);
-			if (key != null)
+			if (key != null && pianoEnabled)
 			{
 				keyDowns.Remove(key);
 				resetButtonColor(key);
+				notesWindow.BackColor = Color.DarkSlateGray;
 			}
 		}
 
 		private void form_PlayGame_KeyDown(object sender, KeyEventArgs e)
 		{
 			string key = getNote((char)e.KeyValue);
-			if (key != null)
+			if (key != null && pianoEnabled)
 			{
 				if (keyDowns.Contains(key))
 					return;
@@ -105,7 +107,6 @@ namespace VirtualPianoApp
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
 				midiObj = new MidiObj(ofd.FileName);
-				btn_openMidi.Hide();
 				btn_start.Show();
 
 				IEnumerable<Note> notes = midiObj.notes;
@@ -131,7 +132,12 @@ namespace VirtualPianoApp
 		private void btn_start_Click(object sender, EventArgs e)
 		{
 			timerPiano.Start();
+			btn_openMidi.Hide();
 			btn_start.Hide();
+			_minutes = 0;
+			_seconds = 0;
+			_miliseconds = 0;
+			enablePianoButtons();
 		}
 		#endregion
 
@@ -139,10 +145,18 @@ namespace VirtualPianoApp
 		{
             bool isCollision = noteDoc.checkForCollision(key);
             if (isCollision)
-                hits++;
-            else
-                misses++;
-
+			{
+				hits++;
+				lbl_hits.Text = "Hits:  " + hits.ToString();
+				notesWindow.BackColor = Color.LightGreen;
+			}
+			else
+			{
+				misses++;
+				lbl_misses.Text = "Misses:  " + misses.ToString();
+				notesWindow.BackColor = Color.DarkRed;
+			}
+          
 		}
 
 		#region Helper methods
@@ -403,7 +417,42 @@ namespace VirtualPianoApp
 					noteDoc.AddNote(n);
 					listOfNotes.RemoveAt(0);
 				}
+			} else
+			{
+				if (noteDoc.checkForLastAndStop())
+				{
+					disablePianoButtons();
+					resetGame();
+					timerPiano.Stop();
+				}
+					
 			}
+		}
+
+		private void resetGame()
+		{
+			btn_openMidi.Show();
+			notesWindow.BackColor = Color.DarkSlateGray;
+			if (midiObj.file != null)
+				btn_start.Show();
+		}
+
+		private void disablePianoButtons()
+		{
+			foreach (Button btn in panel_pianoButtons.Controls)
+			{
+				btn.Enabled = false;
+			}
+			pianoEnabled = false;
+		}
+
+		private void enablePianoButtons()
+		{
+			foreach (Button btn in panel_pianoButtons.Controls)
+			{
+				btn.Enabled = true;
+			}
+			pianoEnabled = true;
 		}
 
 		private void notesWindow_Paint(object sender, PaintEventArgs e)
