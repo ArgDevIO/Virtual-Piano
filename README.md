@@ -3,8 +3,8 @@
 ***
 Ова апликација е слична поедноставна имплементација на апликацијата за piano tutorials, **Synthesia**! И е комбинирано по сличен функционалност на играта **Piano Tiles**!
 
-⋅⋅* **Synthesia** -> https://www.youtube.com/watch?v=R1cuoP25DGg
-⋅⋅* **Piano Tiles** -> https://www.youtube.com/watch?v=kVIWzN0DmTc
+* **Synthesia** -> https://www.youtube.com/watch?v=R1cuoP25DGg
+* **Piano Tiles** -> https://www.youtube.com/watch?v=kVIWzN0DmTc
 
 За играње/свирење на пианото се користат копчиња од тастатура кои се означени на секое копче од пианото!
 
@@ -12,7 +12,7 @@
 _*Точното време значи кога нотава ке стигне на горниот дел од пианото тогаш да се притисне потребното копче со простор на грешка од 27 милисекунди!_
 
 Стартното мени или форма на ова апликација:
-![alt text](https://github.com/ArgDevIO/Virtual-Piano/blob/master/VirtualPianoApp/Screenshots/PlayGame_startno.PNG "Start Menu Form")
+![alt text](https://github.com/ArgDevIO/Virtual-Piano/blob/master/VirtualPianoApp/Screenshots/Form_StartMenu.PNG "Start Menu Form")
 
 
 При стартување на апликацијава се провере дали локацијата на потребните датотеки за музичките ноти е чувана порано, ако ја нема потребната локација тогаш копчињата PLAY GAME и FREE PLAY се disabled!
