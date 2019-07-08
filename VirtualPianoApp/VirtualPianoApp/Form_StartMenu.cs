@@ -13,6 +13,7 @@ namespace VirtualPianoApp
 {
 	public partial class form_startMenu : Form
 	{
+		#region Variables
 		public string notesFolderLocation { get; set; }
 		private string[] notesNames = new string[]
 		{
@@ -24,9 +25,11 @@ namespace VirtualPianoApp
 			"A.wav", "ASharp.wav",
 			"B.wav"
 		};
+		#endregion
 		public form_startMenu()
 		{
 			InitializeComponent();
+			this.Icon = VirtualPianoApp.Properties.Resources.VirtualPianoIcon;
 			if (checkIfNotesLocationIsSaved())
 			{
 				btn_startGame.Enabled = true;
@@ -34,6 +37,7 @@ namespace VirtualPianoApp
 			}
 		}
 
+		#region Events/Actions
 		private void btn_startGame_Click(object sender, EventArgs e)
 		{
 			this.Hide();
@@ -82,7 +86,9 @@ namespace VirtualPianoApp
 				
 			}
 		}
+		#endregion
 
+		#region Helper methods
 		private bool checkIfNotesLocationIsSaved()
 		{
 			StreamReader file = new StreamReader(@"Notes_Location.txt");
@@ -113,5 +119,6 @@ namespace VirtualPianoApp
 			string[] lines = { path };
 			File.WriteAllLines(@"Notes_Location.txt", lines);
 		}
+		#endregion
 	}
 }
