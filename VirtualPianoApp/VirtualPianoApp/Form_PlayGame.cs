@@ -51,6 +51,7 @@ namespace VirtualPianoApp
 		{
 			
 			InitializeComponent();
+			this.Icon = VirtualPianoApp.Properties.Resources.VirtualPianoIcon;
 			this.notesFolderLocation = notesFolder;
 			timerPiano.Stop();
 			disablePianoButtons();
@@ -60,11 +61,9 @@ namespace VirtualPianoApp
 			BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 			null, notesWindow, new object[] { true });
 			#endregion
-
-			Console.WriteLine("open " + Application.StartupPath + "\\NOTES\\{0}.wav type waveaudio alias {0}");
 		}
 
-		#region Event handlers
+		#region Events/Actions
 		private void form_PlayGame_KeyUp(object sender, KeyEventArgs e)
 		{
 			string key = getNote((char)e.KeyValue);
@@ -153,24 +152,15 @@ namespace VirtualPianoApp
 			enablePianoButtons();
 			timerPiano.Start();
 		}
-		#endregion
 
-		private void checkForCollision(string key)
+		private void btn_backToStartMenu_Click(object sender, EventArgs e)
 		{
-            bool isCollision = noteDoc.checkForCollision(key);
-            if (isCollision)
-			{
-				hits++;
-				lbl_hits.Text = "Hits:  " + hits.ToString();
-				notesWindow.BackColor = Color.LightGreen;
-			}
-			else
-			{
-				misses++;
-				lbl_misses.Text = "Misses:  " + misses.ToString();
-				notesWindow.BackColor = Color.DarkRed;
-			}
+			this.Hide();
+			var startMenu = new form_startMenu();
+			startMenu.Closed += (s, args) => this.Close();
+			startMenu.Show();
 		}
+		#endregion
 
 		#region Helper methods
 		private string getOpenNoteCommand(string note)
@@ -203,7 +193,6 @@ namespace VirtualPianoApp
 				default: return null;
 			}
 		}
-
 		private void resetButtonColor(string note)
 		{
 			if (!note.Contains("Sharp"))
@@ -409,7 +398,7 @@ namespace VirtualPianoApp
 		{
 			_minutes++;
 		}
-		#endregion
+		
 		private void timerPiano_Tick(object sender, EventArgs e)
 		{
 			noteDoc.Move();
@@ -452,14 +441,6 @@ namespace VirtualPianoApp
 			noteDoc.Draw(e.Graphics);
 		}
 
-		private void btn_backToStartMenu_Click(object sender, EventArgs e)
-		{
-			this.Hide();
-			var startMenu = new form_startMenu();
-			startMenu.Closed += (s, args) => this.Close();
-			startMenu.Show();
-		}
-
 		private void DrawNote()
 		{
 			if (listOfNotes.Count != 0)
@@ -479,8 +460,25 @@ namespace VirtualPianoApp
 					resetGame();
 					timerPiano.Stop();
 				}
-
 			}
 		}
+
+		private void checkForCollision(string key)
+		{
+			bool isCollision = noteDoc.checkForCollision(key);
+			if (isCollision)
+			{
+				hits++;
+				lbl_hits.Text = "Hits:  " + hits.ToString();
+				notesWindow.BackColor = Color.LightGreen;
+			}
+			else
+			{
+				misses++;
+				lbl_misses.Text = "Misses:  " + misses.ToString();
+				notesWindow.BackColor = Color.DarkRed;
+			}
+		}
+		#endregion
 	}
 }

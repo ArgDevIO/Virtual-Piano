@@ -277,7 +277,7 @@
 			this.Margin = new System.Windows.Forms.Padding(5);
 			this.Name = "form_FreePlay";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Form_FreePlay";
+			this.Text = "VIRTUAL PIANO: free play";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_FreePlay_KeyDown);
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.form_FreePlay_KeyUp);
 			this.panel_pianoButtons.ResumeLayout(false);
