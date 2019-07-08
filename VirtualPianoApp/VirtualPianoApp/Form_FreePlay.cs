@@ -22,15 +22,9 @@ namespace VirtualPianoApp
         string noteName;
         string openNoteCommand;
         string playNoteCommand;
-
-        public short _minutes, _seconds;
-        public long _miliseconds;
-
-        private NoteDoc noteDoc = new NoteDoc();
+   
         private List<string> keyDowns = new List<string>();
         private List<NoteObj> listOfNotes = new List<NoteObj>();
-
-        public bool buffer = false;
 
         bool playingNote = false;
         int noteCounter = 1;
@@ -41,10 +35,12 @@ namespace VirtualPianoApp
         public form_FreePlay(string notesFolder)
         {
             InitializeComponent();
+			this.Icon = VirtualPianoApp.Properties.Resources.VirtualPianoIcon;
 			this.notesFolderLocation = notesFolder;
         }
 
-        private void Form_FreePlay_KeyDown(object sender, KeyEventArgs e)
+		#region Events/Actions
+		private void Form_FreePlay_KeyDown(object sender, KeyEventArgs e)
         {
             string key = getNote((char)e.KeyValue);
             if (key != null)
@@ -53,7 +49,6 @@ namespace VirtualPianoApp
                     return;
 
                 keyDowns.Add(key);
-
 
                 if (playingNote)
                 {
@@ -73,7 +68,27 @@ namespace VirtualPianoApp
             }
         }
 
-        private string getOpenNoteCommand(string note)
+		private void form_FreePlay_KeyUp(object sender, KeyEventArgs e)
+		{
+			string key = getNote((char)e.KeyValue);
+			if (key != null)
+			{
+				keyDowns.Remove(key);
+				resetButtonColor(key);
+			}
+		}
+
+		private void btn_backToStartMenu_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			var startMenu = new form_startMenu();
+			startMenu.Closed += (s, args) => this.Close();
+			startMenu.Show();
+		}
+		#endregion
+
+		#region Helper methods
+		private string getOpenNoteCommand(string note)
         {
 			Console.WriteLine(string.Format("open {0}\\{1}.wav type waveaudio alias {1}", notesFolderLocation, note));
             return string.Format("open {0}\\{1}.wav type waveaudio alias {1}", notesFolderLocation, note);
@@ -160,24 +175,6 @@ namespace VirtualPianoApp
             }
         }
 
-        private void form_FreePlay_KeyUp(object sender, KeyEventArgs e)
-        {
-            string key = getNote((char)e.KeyValue);
-            if (key != null)
-            {
-                keyDowns.Remove(key);
-                resetButtonColor(key);
-            }
-        }
-
-		private void btn_backToStartMenu_Click(object sender, EventArgs e)
-		{
-			this.Hide();
-			var startMenu = new form_startMenu();
-			startMenu.Closed += (s, args) => this.Close();
-			startMenu.Show();
-		}
-
 		private void changeButtonPressedColor(string note)
         {
             switch (note)
@@ -223,5 +220,6 @@ namespace VirtualPianoApp
                     break;
             }
         }
-    }
+		#endregion
+	}
 }

@@ -11,7 +11,6 @@ namespace VirtualPianoApp
 		public int _minutes { get; set; }
 		public int _seconds { get; set; }
 		public long _miliseconds { get; set; }
-
 		public MyTime(int min, int sec, long milsec)
 		{
 			_minutes = min;

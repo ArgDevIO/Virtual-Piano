@@ -34,6 +34,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\VirtualPianoIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Melanchall.DryWetMidi, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Melanchall.DryWetMidi.4.1.0\lib\net45\Melanchall.DryWetMidi.dll</HintPath>
@@ -111,6 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\piano background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VirtualPianoIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
