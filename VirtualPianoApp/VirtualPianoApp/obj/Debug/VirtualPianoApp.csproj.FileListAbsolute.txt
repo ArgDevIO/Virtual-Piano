@@ -1,0 +1,13 @@
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\bin\Debug\VirtualPianoApp.exe.config
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\bin\Debug\VirtualPianoApp.exe
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\bin\Debug\VirtualPianoApp.pdb
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.csprojResolveAssemblyReference.cache
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.form_startMenu.resources
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.Properties.Resources.resources
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.csproj.GenerateResource.Cache
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.exe
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.pdb
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.Form_PlayGame.resources
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\bin\Debug\Melanchall.DryWetMidi.dll
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\bin\Debug\Melanchall.DryWetMidi.xml
+C:\Users\arget\Documents\Finki\6-Semester(S)\Visual Programming\Project\Virtual-Piano\VirtualPianoApp\VirtualPianoApp\obj\Debug\VirtualPianoApp.form_FreePlay.resources
